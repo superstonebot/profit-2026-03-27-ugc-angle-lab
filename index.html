@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UGC Angle Lab</title>
+    <meta
+      name="description"
+      content="Local-first UGC planning studio for hooks, personas, scripts, shot lists, and creative test variants."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <header class="topbar panel">
+        <div>
+          <p class="eyebrow">LOCAL-FIRST CREATIVE OPS</p>
+          <div class="brand-row">
+            <h1>UGC Angle Lab</h1>
+            <span class="status-pill" id="autosaveStatus">Auto-saved locally</span>
+          </div>
+          <p class="lede" id="heroCopy">
+            Turn a rough product brief into a hook bank, script, shot list, and variant test plan before you spend on production.
+          </p>
+        </div>
+
+        <div class="header-tools">
+          <div class="lang-toggle" aria-label="Language toggle">
+            <button type="button" class="lang-btn" data-lang="ko">KO</button>
+            <button type="button" class="lang-btn" data-lang="en">EN</button>
+          </div>
+
+          <div class="toolbar-actions">
+            <button type="button" class="ghost-button" id="sampleButton"></button>
+            <button type="button" class="ghost-button" id="generateButton"></button>
+            <button type="button" class="ghost-button" id="exportMarkdownButton"></button>
+            <button type="button" class="ghost-button" id="exportJsonButton"></button>
+          </div>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <section class="left-rail stack">
+          <article class="panel card">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow" id="briefEyebrow"></p>
+                <h2 id="briefTitle"></h2>
+              </div>
+              <button type="button" class="text-button" id="resetButton"></button>
+            </div>
+
+            <form id="briefForm" class="brief-form">
+              <label>
+                <span data-label="product"></span>
+                <input type="text" name="product" />
+              </label>
+              <label>
+                <span data-label="offer"></span>
+                <input type="text" name="offer" />
+              </label>
+              <label>
+                <span data-label="audience"></span>
+                <textarea name="audience" rows="2"></textarea>
+              </label>
+              <label>
+                <span data-label="pain"></span>
+                <textarea name="pain" rows="2"></textarea>
+              </label>
+              <label>
+                <span data-label="objections"></span>
+                <textarea name="objections" rows="2"></textarea>
+              </label>
+              <label>
+                <span data-label="proofPoints"></span>
+                <textarea name="proofPoints" rows="2"></textarea>
+              </label>
+              <label>
+                <span data-label="cta"></span>
+                <input type="text" name="cta" />
+              </label>
+            </form>
+          </article>
+
+          <article class="panel card">
+            <div class="section-heading compact">
+              <div>
+                <p class="eyebrow" id="personaEyebrow"></p>
+                <h2 id="personaTitle"></h2>
+              </div>
+            </div>
+            <div id="personaCards" class="selection-grid"></div>
+          </article>
+
+          <article class="panel card">
+            <div class="section-heading compact">
+              <div>
+                <p class="eyebrow" id="angleEyebrow"></p>
+                <h2 id="angleTitle"></h2>
+              </div>
+            </div>
+            <div id="angleCards" class="selection-grid"></div>
+          </article>
+
+          <article class="panel card utility-card">
+            <div class="section-heading compact">
+              <div>
+                <p class="eyebrow" id="historyEyebrow"></p>
+                <h2 id="historyTitle"></h2>
+              </div>
+            </div>
+            <div id="historyList" class="history-list empty-state"></div>
+          </article>
+        </section>
+
+        <section class="main-stage stack">
+          <article class="panel summary-hero">
+            <div>
+              <p class="eyebrow" id="summaryEyebrow"></p>
+              <h2 id="summaryTitle"></h2>
+            </div>
+            <div class="summary-meta">
+              <div>
+                <span class="meta-label" id="summaryPersonaLabel"></span>
+                <strong id="summaryPersonaValue">—</strong>
+              </div>
+              <div>
+                <span class="meta-label" id="summaryAngleLabel"></span>
+                <strong id="summaryAngleValue">—</strong>
+              </div>
+              <div>
+                <span class="meta-label" id="summaryCountLabel"></span>
+                <strong id="summaryCountValue">0</strong>
+              </div>
+            </div>
+          </article>
+
+          <div class="output-grid">
+            <article class="panel card output-card">
+              <div class="section-heading compact">
+                <div>
+                  <p class="eyebrow" id="hooksEyebrow"></p>
+                  <h2 id="hooksTitle"></h2>
+                </div>
+                <span class="mini-pill" id="favoritesCount"></span>
+              </div>
+              <div id="hooksList" class="list-stack empty-state"></div>
+            </article>
+
+            <article class="panel card output-card">
+              <div class="section-heading compact">
+                <div>
+                  <p class="eyebrow" id="scriptEyebrow"></p>
+                  <h2 id="scriptTitle"></h2>
+                </div>
+              </div>
+              <div id="scriptList" class="list-stack empty-state"></div>
+            </article>
+
+            <article class="panel card output-card">
+              <div class="section-heading compact">
+                <div>
+                  <p class="eyebrow" id="shotsEyebrow"></p>
+                  <h2 id="shotsTitle"></h2>
+                </div>
+              </div>
+              <div id="shotsList" class="list-stack empty-state"></div>
+            </article>
+
+            <article class="panel card output-card wide-card">
+              <div class="section-heading compact">
+                <div>
+                  <p class="eyebrow" id="matrixEyebrow"></p>
+                  <h2 id="matrixTitle"></h2>
+                </div>
+                <span class="mini-pill" id="compareHint"></span>
+              </div>
+              <div id="matrixTableWrap" class="table-wrap empty-state"></div>
+            </article>
+
+            <article class="panel card output-card wide-card utility-card">
+              <div class="section-heading compact">
+                <div>
+                  <p class="eyebrow" id="compareEyebrow"></p>
+                  <h2 id="compareTitle"></h2>
+                </div>
+              </div>
+              <div id="comparePanel" class="compare-panel empty-state"></div>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="./src/main.mjs"></script>
+  </body>
+</html>
